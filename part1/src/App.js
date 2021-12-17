@@ -1,10 +1,37 @@
-import React from "react";
+import React, {useState} from "react"
 
-const App = (props) => {
-  const {counter} = props
+
+const App = () => {
+  const [ counter, setCounter ] = useState(0)
+
+  const increaseByOne = () => setCounter(counter + 1)
+  const decreaseByOne = () => setCounter(counter - 1)
+  const setToZero = () => setCounter(0)
+
+  const Button = ({ handleClick, text }) => (
+    <button onClick={handleClick}>
+      {text}
+    </button>
+  )
+
+  const Display = ({ counter }) => <div>{counter}</div>
+
   return (
-    <div>{counter}</div>
+    <div>
+       <Display counter={counter}/>
+       <Button
+        handleClick={increaseByOne}
+        text='plus'
+      />
+      <Button
+        handleClick={setToZero}
+        text='zero'
+      />     
+      <Button
+        handleClick={decreaseByOne}
+        text='minus'
+      />           
+    </div>
   )
 }
-
 export default App;
