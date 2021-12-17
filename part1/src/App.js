@@ -1,14 +1,13 @@
 import React from "react";
 
-const Heippa = (props) => {
-  const bornYear = () => {
-    const yearNow = new Date().getFullYear()
-    return yearNow - props.age
-  }
+const Heippa = ({name, age}) => {
+  
+  const bornYear = () =>  new Date().getFullYear() - age
+
 
   return (
     <div>
-      <p>Heippa {props.name}, oot {props.age} vuotias</p>
+      <p>Heippa {name}, oot {age} vuotias</p>
       <p>Joten oot varmaan syntynyt {bornYear()}</p>
     </div>
   )
@@ -16,7 +15,7 @@ const Heippa = (props) => {
 
 const App = () => {
   const nimi = 'Hello'
-  const ika = 10
+  const ika = 20
 
   return (
     <div>
