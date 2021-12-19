@@ -14,14 +14,17 @@ const Statistics = ({hyva, neutral, huono, all, average, percent}) => {
     <div>
       <h1>Tilasto</h1>
 
-      <p>Hyvä {hyva}</p>
-      <p>Neutraali {neutral}</p>
-      <p>Huono {huono}</p>
-      <p>Kaikki {all}</p>
-      <p>Keskiarvo {average}</p>
-      <p>Positiivisia {percent} %</p>
+      <StatisticLine text="Hyva" value={hyva} />
+      <StatisticLine text="Neutraali" value={neutral} />
+      <StatisticLine text="Huono" value={huono} />
+      <StatisticLine text="Kaikki" value={all} />
+      <StatisticLine text="Keskiarvo" value={average} />
+      <StatisticLine text="Positiivisia" value={percent} />   
   </div>
   )
+}
+const StatisticLine = ({text, value}) => {
+  return (<p>{text + " "}{value}</p>)
 }
 
 const App = () => {
