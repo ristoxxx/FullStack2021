@@ -1,5 +1,20 @@
 import React, {useState} from "react";
 
+const Statistics = (props) => (
+  <div>
+    <h1>Tilasto</h1>
+
+    <p>Hyvä {props.hyva}</p>
+    <p>Neutraali {props.neutral}</p>
+    <p>Huono {props.huono}</p>
+    <p>Kaikki {props.all}</p>
+    <p>Keskiarvo {props.average}</p>
+    <p>pisteet {props.points}</p>
+    <p>Positiivisia {props.percent} %</p>
+  </div>
+)
+
+
 const App = () => {
   const [huono, setHuono] = useState(0)
   const [hyva, setHyva] = useState(0)
@@ -13,23 +28,20 @@ const App = () => {
     setAll(all + 1)
     setHuono(huono + 1)
     setPoints(points - 1)
-    calculateAverage()
-    calculatePercent()
+    calculateAll()
   }
 
   const handleNeutralClick = () => {
     setAll(all +1)
     setNeutral(neutral + 1)
-    calculateAverage()
-    calculatePercent()
+    calculateAll()
   }
 
   const handleHyvaClick = () => {
     setAll(all + 1)
     setHyva(hyva + 1)
     setPoints(points + 1)
-    calculateAverage()
-    calculatePercent()
+    calculateAll()
   }
   
   const Button = ({ handleClick, text }) => (
@@ -38,13 +50,11 @@ const App = () => {
     </button>
   )
 
-  const calculateAverage = () => {
+  const calculateAll = () => {
     setAverage(points/all)
-  }
-
-  const calculatePercent = () => {
     setPercent(hyva/all*100)
   }
+
 
   
   return (
@@ -55,18 +65,15 @@ const App = () => {
         <Button handleClick={handleHyvaClick} text='hyva' />
         <Button handleClick={handleNeutralClick} text='neutraali' />
         <Button handleClick={handleHuonoClick} text='huono' />
-        <Button handleClick={calculateAverage, calculatePercent} text='calculate' />
-
-        <h1>Tilasto</h1>
-
-        <p>Hyvä {hyva}</p>
-        <p>Neutraali {neutral}</p>
-        <p>Huono {huono}</p>
-        <p>Kaikki {all}</p>
-        <p>Keskiarvo {average}</p>
-        <p>pisteet {points}</p>
-        <p>Positiivisia {percent} %</p>
-        
+        <Button handleClick={calculateAll} text='calculate' />
+        <Statistics 
+          hyva={hyva} 
+          neutral={neutral} 
+          huono={huono} 
+          all={all} 
+          average={average}
+          points={points}
+          percent={percent}/>
       </div>
     </div>
   )
