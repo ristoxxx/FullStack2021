@@ -1,19 +1,28 @@
 import React, {useState} from "react";
 
-const Statistics = (props) => (
-  <div>
-    <h1>Tilasto</h1>
+const Statistics = ({hyva, neutral, huono, all, average, percent}) => {
+  if (all === 0) {
+    return (
+      <div>
+        <h1>Tilasto</h1>
+        <p>Ei palautetta annettu</p>
+      </div>
+    )
+  }
+  return (
 
-    <p>Hyvä {props.hyva}</p>
-    <p>Neutraali {props.neutral}</p>
-    <p>Huono {props.huono}</p>
-    <p>Kaikki {props.all}</p>
-    <p>Keskiarvo {props.average}</p>
-    <p>pisteet {props.points}</p>
-    <p>Positiivisia {props.percent} %</p>
+    <div>
+      <h1>Tilasto</h1>
+
+      <p>Hyvä {hyva}</p>
+      <p>Neutraali {neutral}</p>
+      <p>Huono {huono}</p>
+      <p>Kaikki {all}</p>
+      <p>Keskiarvo {average}</p>
+      <p>Positiivisia {percent} %</p>
   </div>
-)
-
+  )
+}
 
 const App = () => {
   const [huono, setHuono] = useState(0)
@@ -72,7 +81,6 @@ const App = () => {
           huono={huono} 
           all={all} 
           average={average}
-          points={points}
           percent={percent}/>
       </div>
     </div>
