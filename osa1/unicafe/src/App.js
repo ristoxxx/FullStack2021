@@ -7,18 +7,21 @@ const App = () => {
   const [all, setAll] = useState(0)
   const [average, setAverage] = useState(0)
   const [points, setPoints] = useState(0)
+  const [percent, setPercent] = useState(0)
 
   const handleHuonoClick = () => {
     setAll(all + 1)
     setHuono(huono + 1)
     setPoints(points - 1)
     calculateAverage()
+    calculatePercent()
   }
 
   const handleNeutralClick = () => {
     setAll(all +1)
     setNeutral(neutral + 1)
     calculateAverage()
+    calculatePercent()
   }
 
   const handleHyvaClick = () => {
@@ -26,6 +29,7 @@ const App = () => {
     setHyva(hyva + 1)
     setPoints(points + 1)
     calculateAverage()
+    calculatePercent()
   }
   
   const Button = ({ handleClick, text }) => (
@@ -38,6 +42,10 @@ const App = () => {
     setAverage(points/all)
   }
 
+  const calculatePercent = () => {
+    setPercent(hyva/all*100)
+  }
+
   
   return (
     <div>
@@ -47,7 +55,8 @@ const App = () => {
         <Button handleClick={handleHyvaClick} text='hyva' />
         <Button handleClick={handleNeutralClick} text='neutraali' />
         <Button handleClick={handleHuonoClick} text='huono' />
-        
+        <Button handleClick={calculateAverage, calculatePercent} text='calculate' />
+
         <h1>Tilasto</h1>
 
         <p>Hyvä {hyva}</p>
@@ -56,6 +65,7 @@ const App = () => {
         <p>Kaikki {all}</p>
         <p>Keskiarvo {average}</p>
         <p>pisteet {points}</p>
+        <p>Positiivisia {percent} %</p>
         
       </div>
     </div>
