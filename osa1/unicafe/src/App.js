@@ -10,21 +10,28 @@ const Statistics = ({hyva, neutral, huono, all, average, percent}) => {
     )
   }
   return (
-
     <div>
       <h1>Tilasto</h1>
-
-      <StatisticLine text="Hyva" value={hyva} />
-      <StatisticLine text="Neutraali" value={neutral} />
-      <StatisticLine text="Huono" value={huono} />
-      <StatisticLine text="Kaikki" value={all} />
-      <StatisticLine text="Keskiarvo" value={average} />
-      <StatisticLine text="Positiivisia" value={percent} />   
+      <table>
+        <tbody>
+          <StatisticLine text="Hyva" value={hyva} />
+          <StatisticLine text="Neutraali" value={neutral} />
+          <StatisticLine text="Huono" value={huono} />
+          <StatisticLine text="Kaikki" value={all} />
+          <StatisticLine text="Keskiarvo" value={average.toFixed(1)} />
+          <StatisticLine text="Positiivisia" value={percent.toFixed(1) + " %"} /> 
+        </tbody>
+      </table>  
   </div>
   )
 }
+
 const StatisticLine = ({text, value}) => {
-  return (<p>{text + " "}{value}</p>)
+  return (
+  <tr>
+    <td>{text}</td>
+    <td>{value}</td>
+  </tr>)
 }
 
 const App = () => {
@@ -67,8 +74,6 @@ const App = () => {
     setPercent(hyva/all*100)
   }
 
-
-  
   return (
     <div>
       <div>
